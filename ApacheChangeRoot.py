@@ -223,6 +223,8 @@ if __name__=="__main__":
         apacheConfPath="apache2.conf"
     else:
         apacheconfPath="/etc/apache2/apache2.conf"
+    if siteName=="":
+        siteName="default_site.conf"
         
     customRoot=newRoot(newDir,site=siteName,apachepath=apacheConfPath)
     
