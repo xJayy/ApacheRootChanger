@@ -129,14 +129,15 @@ def manageApacheSites(sitesToEnable,sitesToDisable="all",verbose=False):
     
     if sitesToDisable=="all":
         if verbose==True:
-            print("\nDisabling enabled sites...")
-            output=subprocess.call("a2dissite *",shell=True,stdout=sys.__stdout__,stderr=null)    
+            print("\nDisabling all enabled sites...")
+            output=subprocess.call("a2dissite *",shell=True,stdout=null,stderr=null)    
         else:
             output=subprocess.call("a2dissite *",shell=True,stdout=null,stderr=null)
     else:
         for el in sitesToDisable:
             if verbose==True:
-                output=subprocess.call("a2dissite " + el,shell=True,stdout=sys.__stdout__,stderr=null) 
+                print("Site " + el + " disabled")
+                output=subprocess.call("a2dissite " + el,shell=True,stdout=null,stderr=null) 
             else:
                 output=subprocess.call("a2dissite " + el,shell=True,stdout=null,stderr=null)
             time.sleep(0.2)
@@ -145,7 +146,8 @@ def manageApacheSites(sitesToEnable,sitesToDisable="all",verbose=False):
                 
     for el in sitesToEnable:
         if verbose==True:
-            output=subprocess.call("a2ensite " + el,shell=True,stdout=sys.__stdout__,stderr=null)
+            print("Site " + el + " disabled")
+            output=subprocess.call("a2ensite " + el,shell=True,stdout=null,stderr=null)
         else:
             output=subprocess.call("a2ensite " + el,shell=True,stdout=null,stderr=null)
             
@@ -235,7 +237,7 @@ if __name__=="__main__":
     customRoot.setApacheConf()
     
     newSiteName=list(newSiteName)
-    
+    print(newSiteName)
     manageApacheSites(sitesToEnable=newSiteName,verbose=True)
     
     print(Fore.RESET)
