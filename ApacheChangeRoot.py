@@ -43,6 +43,9 @@ def banner():
     input("")
     
 def askForSettings():
+    
+    global newDir,newSiteName,purgeSites,reset,siteName
+    
     purgeSites=""
     while purgeSites.lower()!="y" and purgeSites.lower()!="n":
         system("clear")
@@ -69,7 +72,7 @@ def askForSettings():
     while reset.lower()!="y" and reset.lower()!="n":
         system("clear")
         print(Fore.YELLOW + "Do you want to reset apache configuration files ? (Y/N)")
-        delete=input("\n>>> ")
+        reset=input("\n>>> ")
         
     siteName=""
     alreadyExistingSite=""
