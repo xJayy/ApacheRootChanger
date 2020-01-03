@@ -217,21 +217,26 @@ if __name__=="__main__":
     dependencies()
     banner()
     askForSettings()
+    
     if purgeSites=="y":
         purge_sites()
+        
     if reset=="y":
         apacheConfPath="apache2.conf"
     else:
         apacheconfPath="/etc/apache2/apache2.conf"
-    if siteName=="":
-        siteName="default_site.conf"
         
-    customRoot=newRoot(newDir,site=siteName,apachepath=apacheConfPath)
+    if siteName=="":
+        customRoot=newRoot(newDir,apachepath=apacheConfPath)
+    else:
+        customRoot=newRoot(newDir,site=siteName,apachepath=apacheConfPath)
     
     customRoot.setSiteFile(newSiteName)
     customRoot.setApacheConf()
     
-    manageApacheSites(siteToEnable=newSiteName,verbose=True)
+    newSiteName=list(newSiteName)
+    
+    manageApacheSites(sitesToEnable=newSiteName,verbose=True)
     
     print(Fore.RESET)
     
