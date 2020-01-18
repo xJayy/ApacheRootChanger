@@ -221,8 +221,8 @@ if __name__=="__main__":
         
     if reset.lower()=="y":
         apacheConfPath="apache2.conf"
-    elif reset.lower()=="n":
-        apacheconfPath="/etc/apache2/apache2.conf"
+    else:
+        apacheConfPath="/etc/apache2/apache2.conf"
         
     if siteName=="":
         customRoot=newRoot(newDir,apachepath=apacheConfPath)
