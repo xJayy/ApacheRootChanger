@@ -1,6 +1,6 @@
 #coding : utf -8
   
-import os,sys,subprocess,random,time
+import os,sys,subprocess,random,time,glob
 from os import system
 
 if sys.platform=="linux1" or sys.platform=="linux2" or sys.platform=="linux":
@@ -109,7 +109,7 @@ def askForSettings():
 def purge_sites(dir1="/etc/apache2/sites-available",dir2="/etc/apache2/sites-enabled"):
     os.chdir(dir1)
     for i in range(2):
-        files = [f for f in os.listdir(".") if os.path.isfile(os.path.join(".", f))]
+        files = glob.glob("*")
         for el in files:
             if el!="000-default.conf":
                 os.remove(el)
@@ -144,7 +144,7 @@ def manageApacheSites(sitesToEnable,sitesToDisable="all",verbose=False):
                 
     for el in sitesToEnable:
         if verbose==True:
-            print("Site " + el + " disabled")
+            print("Site " + el + " enabled")
         output=subprocess.call("a2ensite " + el,shell=True,stdout=null,stderr=null)
             
     time.sleep(1)
@@ -232,8 +232,7 @@ if __name__=="__main__":
     customRoot.setSiteFile(newSiteName)
     customRoot.setApacheConf()
     
-    newSiteName=list(newSiteName)
-    print(newSiteName)
+    newSiteName = newSiteName.split(None)
     manageApacheSites(sitesToEnable=newSiteName,verbose=True)
     
     print(Fore.RESET)
