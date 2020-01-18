@@ -16,8 +16,10 @@ class Fore:
     RESET="\u001b[0m"
       
 def dependencies():
+    if sys.version_info[0] < 3:
+        raise Exception("Must be using Python 3")
     if sys.platform!="linux1" and sys.platform!="linux2" and sys.platform!="linux":
-        print("\nSorry, this script is only available for linux :(")
+        print(Fore.RED + "\nSorry, this script is only available for linux :(")
         sys.exit(0)
         
     system("clear")
@@ -37,7 +39,7 @@ def dependencies():
      
 def banner():
     print(Fore.GREEN + "\tWelcome to my program, allowing you to change apache2 root (LINUX ONLY) ! enjoy")
-    print(Fore.RED + "\n\t\tMade by <3 by Diamond-Eye (bibivilleneuve11@gmail.com)")
+    print(Fore.RED + "\n\t\tMade by <3 by DiamondLink (bibivilleneuve11@gmail.com)")
     print(Fore.BLUE + "\n\n\t\t\t[PRESS ENTER TO CONTINUE]")
     print(Fore.GREEN + "\n\n\n\nDonate :(my monero/xmr adress) : 49KHKsubi9dWyysLYVo8oNS82iKMbtXc4axhWAi7bkPadQbF9BUN5e4FeHtgSH7gv9dBHEqZibswED7etoBreBLFTEAQWyu" + Fore.RESET)
     input("")
@@ -130,16 +132,12 @@ def manageApacheSites(sitesToEnable,sitesToDisable="all",verbose=False):
     if sitesToDisable=="all":
         if verbose==True:
             print("\nDisabling all enabled sites...")
-            output=subprocess.call("a2dissite *",shell=True,stdout=null,stderr=null)    
-        else:
-            output=subprocess.call("a2dissite *",shell=True,stdout=null,stderr=null)
+        output=subprocess.call("a2dissite *",shell=True,stdout=null,stderr=null)    
     else:
         for el in sitesToDisable:
             if verbose==True:
                 print("Site " + el + " disabled")
-                output=subprocess.call("a2dissite " + el,shell=True,stdout=null,stderr=null) 
-            else:
-                output=subprocess.call("a2dissite " + el,shell=True,stdout=null,stderr=null)
+            output=subprocess.call("a2dissite " + el,shell=True,stdout=null,stderr=null) 
             time.sleep(0.2)
             
     time.sleep(1)
@@ -147,9 +145,7 @@ def manageApacheSites(sitesToEnable,sitesToDisable="all",verbose=False):
     for el in sitesToEnable:
         if verbose==True:
             print("Site " + el + " disabled")
-            output=subprocess.call("a2ensite " + el,shell=True,stdout=null,stderr=null)
-        else:
-            output=subprocess.call("a2ensite " + el,shell=True,stdout=null,stderr=null)
+        output=subprocess.call("a2ensite " + el,shell=True,stdout=null,stderr=null)
             
     time.sleep(1)
     
