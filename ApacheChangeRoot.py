@@ -219,9 +219,9 @@ if __name__=="__main__":
     if purgeSites=="y":
         purge_sites()
         
-    if reset=="y":
+    if reset.lower()=="y":
         apacheConfPath="apache2.conf"
-    else:
+    elif reset.lower()=="n":
         apacheconfPath="/etc/apache2/apache2.conf"
         
     if siteName=="":
