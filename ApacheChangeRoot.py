@@ -91,6 +91,7 @@ def askForSettings():
             
             if siteName=="":
                 siteName="/etc/apache2/sites-available/000-default.conf"
+                newSiteName="/etc/apache2/sites-available/000-default.conf"
                 continuer=False
             elif os.path.exists("/etc/apache2/sites-available/" + siteName + ".conf")==False:
                 system("clear")
