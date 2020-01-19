@@ -100,7 +100,7 @@ def askForSettings():
                 continuer=False
                 siteName="/etc/apache2/sites-available/" + siteName + ".conf"
                 newSiteName="/etc/apache2/sites-available/" + siteName + ".conf"
-    if siteName=="/etc/apache2/sites-available/000-default.conf" or alreadyExistingSite=="n":
+    if alreadyExistingSite=="n":
         system("clear")
         print(Fore.YELLOW + "Specify new site name :")
         newSiteName=input("\n>>> ")
